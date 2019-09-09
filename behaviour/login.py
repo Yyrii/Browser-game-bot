@@ -1,7 +1,7 @@
 import time
 
 
-def login_process(driver, username, password):
+def login(driver, username, password):
     driver.find_element_by_xpath('//*[@id="loginRegisterTabs"]/ul/li[1]/span').click()
 
     # PASSES
@@ -23,7 +23,7 @@ def login_process(driver, username, password):
 
     try:
         driver.find_element_by_xpath('//*[@id="accountlist"]/div/div[1]/div[2]/div/div/div[11]/button/span').click()
-        return True
+        driver.switch_to.window(driver.window_handles[1])
     except:
         return False
 

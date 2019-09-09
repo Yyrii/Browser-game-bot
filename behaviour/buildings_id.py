@@ -11,7 +11,7 @@ buildings_dict = {
     'shipyard' : 2,
     'academy' : 3,
     'barracks' : 4,
-    'warehouse' : 5,
+    'warehouse' : 7, #default location, working
     'branchOffice' : 9, #bazar
     'tavern' : 10,
     'safehouse' : 11, #kryjowka
