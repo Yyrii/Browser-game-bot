@@ -49,3 +49,8 @@ def research_advisor(driver):
 @ensure_execution
 def cookies_accept(driver):
     driver.find_element_by_xpath('//*[@id="accept_btn"]').click()
+
+
+@ensure_execution
+def ambrosia_shop(driver):
+    driver.find_element_by_xpath('//*[@id="js_GlobalMenu_ambrosia"]').click()

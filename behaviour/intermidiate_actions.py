@@ -4,7 +4,7 @@ Actions that requires basic actions, can be made from specific view
 """
 
 from .basic_actions import *
-from .buildings_id import buildings_dict
+from .IDs import buildings_dict
 
 
 def click_building_position(driver, position):
@@ -38,5 +38,13 @@ def choose_field_of_study(driver, type):
     research_advisor(driver)
     driver.find_element_by_xpath('//*[@id="js_researchAdvisorChangeResearchType{}"]'.format(type)).click()
 
+
+def close_building_window(driver,building_name):
+    driver.find_element_by_xpath('//*[@id="{}"]/div[1]/div[2]'.format(building_name)).click()
+
+
+@ensure_execution
+def click_barbarians(driver):
+    driver.find_element_by_xpath('//*[@id="barbarianVillage"]').click()
 
 
