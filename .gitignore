@@ -1,0 +1,11 @@
+# idea
+.idea
+
+# pycache
+*.pyc
+
+# not neccessary files
+training.py
+database/bot_list.db
+behaviour/zoom.js
+behaviour/buildings_position

@@ -16,7 +16,6 @@ def click_building(driver, building_name):
     city_view(driver)
     driver.find_element_by_xpath('//*[@id="position{}"]'.format(buildings_dict[building_name])).click()
 
-
 @ensure_execution
 def click_sawmill(driver):
     island_view(driver)

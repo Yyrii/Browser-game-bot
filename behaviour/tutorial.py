@@ -4,13 +4,14 @@ import behaviour.intermidiate_actions as inter_action
 import behaviour.advanced_actions as advanced_action
 
 
-def run_tutorial(driver):
+def run_tutorial(driver,ads=False):
     basic_action.cookies_accept(driver)
-    basic_action.close_ika_ads(driver)
+    if ads:
+        basic_action.close_ika_ads(driver)
     basic_action.tutorial_ok_btn(driver)
     basic_action.tutorial_popup(driver)
     basic_action.tutorial_ok_btn(driver)
-    advanced_action.set_sawmill_workers(driver,20)
+    advanced_action.set_sawmill_workers(driver,30)
     time.sleep(0.5)
     basic_action.city_view(driver)
     basic_action.tutorial_reward_btn(driver)
@@ -24,12 +25,14 @@ def run_tutorial(driver):
     time.sleep(0.5)
     inter_action.speedup_build_time(driver, 'academy')
     basic_action.tutorial_reward_btn(driver)
-    time.sleep(0.1)
+    time.sleep(0.2)
     basic_action.tutorial_popup(driver)
     basic_action.tutorial_ok_btn(driver)
     # research
     advanced_action.make_reserach(driver,1,1)
+    time.sleep(0.2)
     basic_action.tutorial_reward_btn(driver)
+    time.sleep(0.2)
     basic_action.tutorial_popup(driver)
     basic_action.tutorial_ok_btn(driver)
     time.sleep(0.5)
@@ -104,7 +107,7 @@ def run_tutorial(driver):
     basic_action.tutorial_popup(driver)
     time.sleep(0.1)
     basic_action.tutorial_ok_btn(driver)
-    advanced_action.attack_barbarians(driver,2, spearman=6)
+    advanced_action.attack_barbarians(driver,2, spearman=3)
     basic_action.tutorial_reward_btn(driver)
     basic_action.tutorial_popup(driver)
     basic_action.tutorial_ok_btn(driver)

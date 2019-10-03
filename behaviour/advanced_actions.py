@@ -30,20 +30,21 @@ def build(driver, building_name):
 
 def build_warehouse(driver, warehouse_id):  # notice: war_id has to be 5, 6, 7 or 8
     click_building_position(driver, warehouse_id)
-    time.sleep(2)
+    time.sleep(1)
     driver.find_element_by_xpath('//*[@id="js_{}BuildButton"]'.format('warehouse')).click()
 
 
 # IMPORTANT: tutorial must be turned off
 def upgrade(driver, building_name):
+    time.sleep(0.5)
     try:
         click_building_position(driver, buildings_dict[building_name])
     except:
         element = driver.find_element_by_xpath('//*[@id="worldmap"]')
-        driver.execute_script("arguments[0].setAttribute('style','left: -2000px; top: -400px; transform: scale(0.6)')",element)
-        time.sleep(1)
+        driver.execute_script("arguments[0].setAttribute('style','left: -2000px; top: -420px; transform: scale(0.6)')",element)
+        time.sleep(1.2)
         click_building_position(driver, buildings_dict[building_name])
-    time.sleep(2)
+    time.sleep(1)
     driver.find_element_by_xpath('//*[@id="js_buildingUpgradeButton"]').click()
 
 
@@ -64,9 +65,13 @@ def make_reserach(driver, field_of_research, invention_number):
     time.sleep(0.5) #chose research
     driver.find_element_by_xpath('//*[@id="js_researchAdvisorCurrResearchesArr"]/li[{}]/a'.format(invention_number)).click()
     time.sleep(0.5)
-    for i in range(3):
-        driver.find_element_by_xpath('//*[@id="researchAdvisor"]/div[2]/div[1]/div[3]').click()
-    driver.find_element_by_xpath('//*[@id="js_researchAdvisorConservationLink"]').click() # made research
+    for i in range(10):
+        time.sleep(0.1)
+        try:
+            driver.find_element_by_xpath('//*[@id="js_researchAdvisorConservationLink"]').click() # made research
+            break
+        except:
+            driver.find_element_by_xpath('//*[@id="researchAdvisor"]/div[2]/div[1]/div[3]').click()
     time.sleep(0.5)
     driver.find_element_by_xpath('//*[@id="researchAdvisor"]/div[1]/div[2]').click() #close
 
@@ -126,7 +131,11 @@ def attack_barbarians(driver,cargo_ships,**kwargs):
         for el in kwargs.items():
             time.sleep(0.3)
             # sending specyfic amount of specific soldiers
-            driver.find_element_by_xpath('//*[@id="cargo_army_{}"]'.format(plunder_army_id[el[0]])).send_keys('{}'.format(el[1]))
+            try:
+                driver.find_element_by_xpath('//*[@id="cargo_army_{}"]'.format(plunder_army_id[el[0]])).send_keys('{}'.format(el[1]))
+            except:
+                # for tutorial purposes
+                driver.find_element_by_xpath('//*[@id="cargo_army_315_plus"]').click()
             time.sleep(0.3)
             driver.find_element_by_xpath(' // *[ @ id = "extraTransporter"]').send_keys('{}'.format(cargo_ships))
 
@@ -134,3 +143,10 @@ def attack_barbarians(driver,cargo_ships,**kwargs):
         driver.find_element_by_xpath('//*[@id="plunderbutton"]').click()
     except:
         pass
+
+
+def get_location(driver):
+    island_view(driver)
+    x_coor = driver.find_element_by_xpath('//*[@id="inputXCoord"]').get_attribute('value')
+    y_coor = driver.find_element_by_xpath('//*[@id="inputXCoord"]').get_attribute('value')
+    return '{}:{}'.format(x_coor, y_coor)

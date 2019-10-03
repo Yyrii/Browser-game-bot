@@ -26,7 +26,7 @@ def register(driver, mail, password):
         except:
             time.sleep(0.01)
     try:
-        driver.find_element_by_xpath('//*[@id="serverlist"]/div/div[1]/div[2]/div[3]/div/div[8]/button/span').click()
+        driver.find_element_by_xpath('// *[ @ id = "serverlist"] / div / div[1] / div[2] / div[4] / div / div[8] / button').click()
         driver.switch_to.window(driver.window_handles[1])
     except:
         return False
